@@ -1,13 +1,10 @@
-FROM openjdk:20
+#aguardar openjdk:20 ficar disponivel no repository dockerHub
+FROM openjdk:20-jdk-alpine
 
 WORKDIR /app
 
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:resolve
-
-COPY src ./src
+COPY target/*.jar /app/app.jar
 
 EXPOSE 8080
 
-CMD ["./mvnw", "spring-boot:run"]
+CMD ["java", "-jar", "/app/app.jar"]
