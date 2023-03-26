@@ -7,8 +7,9 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ConcursoIdeiasProfessorAnjoApplication {
 
+
     public static void main(String[] args) {
+        System.setProperty("spring.profiles.active", "development");
         SpringApplication.run(ConcursoIdeiasProfessorAnjoApplication.class, args);
-        System.out.println("Server Up port 8080");
     }
 }
