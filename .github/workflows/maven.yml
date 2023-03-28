@@ -19,7 +19,8 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      GIT_TOKEN: ${{ secrets.TOKEN }}
+      GIT_TOKEN: ${{ secrets.	GIT_TOKEN }}
+      TOKEN: ${{ secrets.	MY_TOKEN }}
 
     steps:
     - name: Checkout code
@@ -36,7 +37,7 @@ jobs:
       run: mvn -B package --file pom.xml
       
     - name: Log Secret
-      run: echo "GIT_TOKEN {GIT_TOKEN}"
+      run: echo "GIT_TOKEN = $GIT_TOKEN || MY_TOKEN = $TOKEN"
       
     - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
       with:
