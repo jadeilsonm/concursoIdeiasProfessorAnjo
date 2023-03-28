@@ -19,8 +19,8 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      GIT_TOKEN: ${{ secrets.	GIT_TOKEN }}
-      TOKEN: ${{ secrets.	MY_TOKEN }}
+      GIT_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      TOKEN: ${{ secrets.MY_TOKEN }}
 
     steps:
     - name: Checkout code
@@ -57,7 +57,7 @@ jobs:
         
         new_branch: custom-new-branch
       env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
         # Additional arguments for the git commit command. The --message argument is already set by the message input.
 
