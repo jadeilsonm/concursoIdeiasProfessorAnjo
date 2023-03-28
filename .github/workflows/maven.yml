@@ -54,7 +54,7 @@ jobs:
         
         new_branch: custom-new-branch
       env:
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: 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
 
         # Additional arguments for the git commit command. The --message argument is already set by the message input.
 
