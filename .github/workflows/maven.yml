@@ -33,29 +33,4 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
-    - name: Log Secret
-      run: echo "GIT_TOKEN = $GIT_TOKEN || MY_TOKEN = $TOKEN"
-      
-    - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
-      with:
-        # The arguments for the `git add` command (see the paragraph below for more info)
-        # Default: '.'
-        add: 'target --force'
-        
-        # The name of the user that will be displayed as the author of the commit.
-        # Default: depends on the default_author input
-        author_name: jadeilson
-
-        # The email of the user that will be displayed as the author of the commit.
-        # Default: depends on the default_author input
-        author_email: jadeilsonm17@gmail.com
-        
-        message: "File build"
-        
-        new_branch: custom-new-branch
-      env:
-        GITHUB_TOKEN: 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
-
-        # Additional arguments for the git commit command. The --message argument is already set by the message input.
-
-
+   
