@@ -4,6 +4,7 @@ import br.edu.ifpe.concursoideiasprofessoranjo.Models.Users;
 import br.edu.ifpe.concursoideiasprofessoranjo.Services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
@@ -19,18 +20,16 @@ public class UserController {
 
     @PostMapping
     @PermitAll
-    @ResponseStatus(HttpStatus.CREATED)
-    public Users CreateUser(@RequestBody Users u){
-
-        return services.CreateUser(u);
-
+    public ResponseEntity<Users> CreateUser(@RequestBody Users u){
+        return new ResponseEntity(services.CreateUser(u), HttpStatus.CREATED);
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-
-    public List<Users> GetUser(){
-        return services.GetUser();
+    public ResponseEntity<List<Users>> GetUser(){
+        return new ResponseEntity(services.GetUser(), HttpStatus.OK);
     }
 
+    public void setServices(UserServices services) {
+        this.services = services;
+    }
 }
