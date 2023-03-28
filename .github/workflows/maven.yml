@@ -18,6 +18,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      GIT_TOKEN: ${{ secrets.TOKEN }}
 
     steps:
     - name: Checkout code
@@ -50,6 +52,8 @@ jobs:
         message: "File build"
         
         new_branch: custom-new-branch
+      env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
         # Additional arguments for the git commit command. The --message argument is already set by the message input.
 
