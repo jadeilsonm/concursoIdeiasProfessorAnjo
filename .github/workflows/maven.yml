@@ -48,6 +48,8 @@ jobs:
         author_email: jadeilsonm17@gmail.com
         
         message: "File build"
+        
+        new_branch: custom-new-branch
 
         # Additional arguments for the git commit command. The --message argument is already set by the message input.
 
