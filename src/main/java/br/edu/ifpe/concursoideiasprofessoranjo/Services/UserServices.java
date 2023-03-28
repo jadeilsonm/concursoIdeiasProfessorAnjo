@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class UserServices {
@@ -21,6 +22,8 @@ public class UserServices {
     public Users CreateUser(Users users){
         return repository.save(EncryptPassword(users));
     }
+
+    public List<Users> GetUser(){ return  repository.findAll(); }
 
     public Users EncryptPassword(Users users){
         users.setPassword(passwordEncoder.encode(users.getPassword()));

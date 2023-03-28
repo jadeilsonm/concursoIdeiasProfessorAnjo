@@ -1,10 +1,13 @@
 #aguardar openjdk:20 ficar disponivel no repository dockerHub
-FROM openjdk:20-jdk-alpine
+FROM openjdk:19-jdk-alpine
 
-WORKDIR /app
+WORKDIR app
 
-COPY target/*.jar /app/app.jar
+COPY . .
 
+# Expõe a porta que a aplicação utiliza
 EXPOSE 8080
 
-CMD ["java", "-jar", "/app/app.jar"]
+
+# Comando para executar a aplicação quando o contêiner for iniciado
+CMD ["java", "-jar", "target/ConcursoIdeiasProfessorAnjo-0.0.1-SNAPSHOT.jar"]
