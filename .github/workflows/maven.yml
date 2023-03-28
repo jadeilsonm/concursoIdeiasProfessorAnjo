@@ -57,7 +57,7 @@ jobs:
         
         new_branch: custom-new-branch
       env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
 
         # Additional arguments for the git commit command. The --message argument is already set by the message input.
 
