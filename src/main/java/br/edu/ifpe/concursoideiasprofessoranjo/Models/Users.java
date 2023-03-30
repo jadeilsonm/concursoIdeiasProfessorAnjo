@@ -1,6 +1,7 @@
 package br.edu.ifpe.concursoideiasprofessoranjo.Models;
 
 
+import br.edu.ifpe.concursoideiasprofessoranjo.Shared.ERole;
 import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
 
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
 public class Users {
@@ -26,7 +28,7 @@ public class Users {
 
     @Column(name = "role", length = 10)
     @JsonIgnore
-    private String role = "default";
+    private ERole role = ERole.DEFAULT;
 
     @Column
     private String cpf;
