@@ -1,7 +1,10 @@
 package br.edu.ifpe.concursoideiasprofessoranjo;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         version = "1.0",
         description = "backend responsavel por persistir dados dos alunos participantes do envento"
 ))
+@SecurityScheme(name = "Auth", scheme = "Bearer", type = SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER, description = "Token JWT gerado na '/api/user/auth'")
 public class ConcursoIdeiasProfessorAnjoApplication {
 
 

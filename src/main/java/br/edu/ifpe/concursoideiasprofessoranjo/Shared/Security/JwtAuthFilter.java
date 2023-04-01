@@ -2,6 +2,7 @@ package br.edu.ifpe.concursoideiasprofessoranjo.Shared.Security;
 
 
 import br.edu.ifpe.concursoideiasprofessoranjo.Services.UsersServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,14 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class JwtAuthFilter extends OncePerRequestFilter {
+    @Autowired
     private JwtService jwtService;
 
+    @Autowired
     private UsersServices userServices;
-
-    public JwtAuthFilter(JwtService jwtService, UsersServices userServices) {
-        this.jwtService = jwtService;
-        this.userServices = userServices;
-    }
 
     @Override
     protected void doFilterInternal(
