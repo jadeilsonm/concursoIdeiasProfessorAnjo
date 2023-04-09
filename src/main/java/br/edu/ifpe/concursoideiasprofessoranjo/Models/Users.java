@@ -29,6 +29,9 @@ public class Users {
     private String role = "default";
 
     @Column
+    @JsonIgnore
+    private boolean isParticipant = false;
+    @Column
     private String cpf;
     @Column
     @NotEmpty(message = "Email is required")
