@@ -31,6 +31,11 @@ public class Users {
     @Column
     @JsonIgnore
     private boolean isParticipant = false;
+
+    @Column
+    @JsonIgnore
+    private boolean isJudge = false;
+
     @Column
     private String cpf;
     @Column
