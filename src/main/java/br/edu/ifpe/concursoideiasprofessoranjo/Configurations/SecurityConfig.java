@@ -40,7 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/api/user").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/user/auth").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/user/auth").permitAll()
                 .antMatchers("/swagger-ui**").permitAll()
+                .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
@@ -52,6 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity http) throws Exception {
         http.ignoring().antMatchers( "/v3/api-docs/**",
+                        "/swagger-ui.html",
+                        "/",
                         "/configuration/ui",
                         "/swagger-config/**",
                         "/configuration/security",
