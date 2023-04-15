@@ -31,6 +31,14 @@ public class Users {
     private ERole role = ERole.DEFAULT;
 
     @Column
+    @JsonIgnore
+    private boolean isParticipant = false;
+
+    @Column
+    @JsonIgnore
+    private boolean isJudge = false;
+
+    @Column
     private String cpf;
     @Column
     @NotEmpty(message = "Email is required")

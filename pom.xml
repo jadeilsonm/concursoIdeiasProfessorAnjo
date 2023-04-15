@@ -107,6 +107,15 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.6.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>in.hocg.boot</groupId>
+            <artifactId>flyway-spring-boot-starter</artifactId>
+            <version>1.0.55</version>
+        </dependency>
 
     </dependencies>
 
