@@ -1,8 +1,19 @@
 package br.edu.ifpe.concursoideiasprofessoranjo.Models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "events")
 public class Events {
 
     static final LocalDate initial = LocalDate.now();

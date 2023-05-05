@@ -4,6 +4,7 @@ package br.edu.ifpe.concursoideiasprofessoranjo.Models;
 import br.edu.ifpe.concursoideiasprofessoranjo.Shared.ERole;
 import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -20,10 +21,11 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(length = 75)
     @NotEmpty(message = "Name is required")
+    @Length(min = 3, max = 75, message = "Name must be between 3 and 75 characters")
     private String name;
-    @Column
+    @Column(length = 150)
     @NotEmpty(message = "Email is required")
     @Email(message = "Email is invalid")
     private String email;
@@ -40,9 +42,10 @@ public class Users {
     @JsonIgnore
     private boolean isJudge = false;
 
-    @Column
+    @Column(length = 11, unique = true)
     private String cpf;
-    @Column
+    @Column(nullable = false)
+    @NotEmpty(message = "Password is required")
     private String password;
     @Column
     private String image;

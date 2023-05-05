@@ -43,6 +43,7 @@ public class UsersServices implements UserDetailsService {
         return t;
     }
 
+
     public Users EncryptPassword(Users users){
         users.setPassword(passwordEncoder.encode(users.getPassword()));
         return users;
@@ -64,8 +65,6 @@ public class UsersServices implements UserDetailsService {
         throw new PasswordInvalidException();
     }
 
-
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Users user = repository.findByEmail(email)
@@ -82,4 +81,13 @@ public class UsersServices implements UserDetailsService {
                 .build();
     }
 
+    public UserDTO createAdmin(Users users) {
+        users.setRole(ERole.ADMIN);
+        return new UserDTO(CreateUser(users));
+    }
+
+    public UserDTO createJury(Users users) {
+        users.setJudge(true);
+        return new UserDTO(CreateUser(users));
+    }
 }

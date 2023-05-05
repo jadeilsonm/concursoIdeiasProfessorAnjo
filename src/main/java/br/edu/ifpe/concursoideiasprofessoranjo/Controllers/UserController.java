@@ -42,7 +42,6 @@ public class UserController {
 
     @PostMapping("/auth")
     public TokenDTO autenticar(@RequestBody CredentialDTO credential){
-        System.out.println("autenticar");
         try{
             Users user = Users.builder()
                     .email(credential.getEmail())
@@ -55,6 +54,18 @@ public class UserController {
         } catch (UsernameNotFoundException | PasswordInvalidException e ){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
         }
+    }
+
+    @Operation(summary = "Create a new admin", hidden = true)
+    @PostMapping("admin")
+    public UserDTO createAdmin(@RequestBody Users users){
+        return userServices.createAdmin(users);
+    }
+
+    @PostMapping("admin/newJury")
+    @Operation(summary = "Create a new jury", hidden = true)
+    public UserDTO createJury(@RequestBody Users users){
+        return userServices.createJury(users);
     }
 
 }
