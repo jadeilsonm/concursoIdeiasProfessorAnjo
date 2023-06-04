@@ -2,11 +2,11 @@ package br.edu.ifpe.concursoideiasprofessoranjo.Controllers;
 
 import br.edu.ifpe.concursoideiasprofessoranjo.Models.Projects;
 import br.edu.ifpe.concursoideiasprofessoranjo.Services.ProjectService;
+import br.edu.ifpe.concursoideiasprofessoranjo.Shared.DTOs.ProjectMemberDTO;
+import br.edu.ifpe.concursoideiasprofessoranjo.Shared.DTOs.ProjectsDTO;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.testng.annotations.Test;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +18,14 @@ public class ProjectController {
     private ProjectService service;
 
     @GetMapping
-    public List<Projects> GetProject(){
+    @SecurityRequirement(name = "Auth")
+    public List<Projects> GetProject() {
         return service.getProjects();
+    }
+
+    @PostMapping
+    @SecurityRequirement(name = "Auth")
+    public ProjectMemberDTO CreateProject(@RequestBody ProjectsDTO p) {
+        return service.CreateProject(p);
     }
 }

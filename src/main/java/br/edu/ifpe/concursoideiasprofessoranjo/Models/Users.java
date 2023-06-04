@@ -6,6 +6,7 @@ import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Data
@@ -24,24 +25,24 @@ public class Users {
     private String name;
     @Column
     @NotEmpty(message = "Email is required")
+    @Email(message = "Email is invalid")
     private String email;
 
     @Column(name = "role", length = 10)
     @JsonIgnore
     private ERole role = ERole.DEFAULT;
 
-    @Column
+    @Column(name = "is_participant")
     @JsonIgnore
     private boolean isParticipant = false;
 
-    @Column
+    @Column(name = "is_judge")
     @JsonIgnore
     private boolean isJudge = false;
 
     @Column
     private String cpf;
     @Column
-    @NotEmpty(message = "Email is required")
     private String password;
     @Column
     private String image;

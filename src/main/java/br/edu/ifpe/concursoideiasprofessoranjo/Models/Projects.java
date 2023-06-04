@@ -19,10 +19,10 @@ public class Projects {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "title")
     private String title;
     @Column
     private String description;
-    @OneToMany( targetEntity = Users.class )
-    public List members;
+    @OneToMany( mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true )
+    public List<Users> members;
 }
