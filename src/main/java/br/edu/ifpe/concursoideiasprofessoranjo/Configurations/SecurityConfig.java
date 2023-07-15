@@ -42,11 +42,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/api/user/ok").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/user/auth").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/user/auth").permitAll()
-                .antMatchers("/swagger-ui**").permitAll()
+                .antMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
+                .and().csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -61,7 +63,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/swagger-config/**",
                         "/configuration/security",
                         "/swagger-ui/**",
-                        "/webjars/**");
+                        "/webjars/**",
+                        "**.html",
+                        "/v2/api-docs",
+                        "/webjars/**",
+                        "/configuration/**",
+                        "/swagger-resources/**");
     }
 
 }
