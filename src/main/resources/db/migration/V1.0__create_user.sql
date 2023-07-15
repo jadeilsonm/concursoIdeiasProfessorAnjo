@@ -1,19 +1,19 @@
 CREATE TABLE users
 (
-    id            INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id            SERIAL PRIMARY KEY,
     email         VARCHAR(150) UNIQUE,
     name          VARCHAR(100),
     password      VARCHAR(350),
     is_participant BOOLEAN     DEFAULT FALSE,
     is_judge       BOOLEAN     DEFAULT FALSE,
-    role          VARCHAR(10) DEFAULT "DEFAULT",
+    role          VARCHAR(10) DEFAULT 'DEFAULT',
     cpf           VARCHAR(11),
-    image         BLOB        DEFAULT NULL
+    image         BYTEA        DEFAULT NULL
 );
 
 CREATE TABLE projects
 (
-    id          INTEGER          NOT NULL AUTO_INCREMENT,
+    id          SERIAL          NOT NULL,
     title       VARCHAR(150) NOT NULL,
     description VARCHAR(500) NOT NULL,
     PRIMARY KEY (id)
