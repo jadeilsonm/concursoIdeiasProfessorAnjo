@@ -44,7 +44,8 @@ public class Users {
     private String cpf;
     @Column
     private String password;
+
     @Column
-    private String image;
+    private String image =  null;
 
 }

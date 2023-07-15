@@ -3,16 +3,18 @@ package br.edu.ifpe.concursoideiasprofessoranjo.Controllers;
 import br.edu.ifpe.concursoideiasprofessoranjo.Models.Users;
 import br.edu.ifpe.concursoideiasprofessoranjo.Services.UsersServices;
 import br.edu.ifpe.concursoideiasprofessoranjo.Shared.DTOs.CredentialDTO;
+import br.edu.ifpe.concursoideiasprofessoranjo.Shared.DTOs.NewUserDTO;
 import br.edu.ifpe.concursoideiasprofessoranjo.Shared.DTOs.TokenDTO;
 import br.edu.ifpe.concursoideiasprofessoranjo.Shared.DTOs.UserDTO;
 import br.edu.ifpe.concursoideiasprofessoranjo.Shared.Exception.PasswordInvalidException;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.slf4j.Logger;
 
 import javax.annotation.security.PermitAll;
 import java.util.List;
@@ -23,6 +25,7 @@ import java.util.List;
 public class UserController {
 
     private UsersServices userServices;
+    Logger logger = LoggerFactory.getLogger(UserController.class);
 
     public UserController(UsersServices userServices) {
         this.userServices = userServices;
@@ -30,8 +33,14 @@ public class UserController {
 
     @PostMapping
     @PermitAll
-    public ResponseEntity<Users> CreateUser(@RequestBody Users u){
+    public ResponseEntity<Users> CreateUser(@RequestBody NewUserDTO u){
+        logger.info("Initializando creted user" + u);
         return new ResponseEntity(userServices.CreateUser(u), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/ok")
+    public String Ok(){
+        return "Ok";
     }
 
     @GetMapping
@@ -42,7 +51,7 @@ public class UserController {
 
     @PostMapping("/auth")
     public TokenDTO autenticar(@RequestBody CredentialDTO credential){
-        System.out.println("autenticar");
+        logger.info("Initializando cautentication" + credential);
         try{
             Users user = Users.builder()
                     .email(credential.getEmail())

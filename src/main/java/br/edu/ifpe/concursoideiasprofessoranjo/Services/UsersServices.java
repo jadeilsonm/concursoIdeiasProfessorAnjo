@@ -2,6 +2,7 @@ package br.edu.ifpe.concursoideiasprofessoranjo.Services;
 
 import br.edu.ifpe.concursoideiasprofessoranjo.Models.Users;
 import br.edu.ifpe.concursoideiasprofessoranjo.Repositorys.UserRepository;
+import br.edu.ifpe.concursoideiasprofessoranjo.Shared.DTOs.NewUserDTO;
 import br.edu.ifpe.concursoideiasprofessoranjo.Shared.DTOs.UserDTO;
 import br.edu.ifpe.concursoideiasprofessoranjo.Shared.ERole;
 import br.edu.ifpe.concursoideiasprofessoranjo.Shared.Exception.PasswordInvalidException;
@@ -18,12 +19,8 @@ import java.util.List;
 
 @Service
 public class UsersServices implements UserDetailsService {
-
-
     private UserRepository repository;
-
     private PasswordEncoder passwordEncoder;
-
     private JwtService jwtService;
 
     public UsersServices(UserRepository repository, PasswordEncoder passwordEncoder, JwtService jwtService) {
@@ -33,8 +30,13 @@ public class UsersServices implements UserDetailsService {
     }
 
     @Transactional
-    public Users CreateUser(Users users){
-        return repository.save(EncryptPassword(users));
+    public Users CreateUser(NewUserDTO u){
+        var user = new Users();
+        user.setName(u.getName());
+        user.setCpf(u.getCpf());
+        user.setEmail(u.getEmail());
+        user.setPassword(u.getPassword());
+        return repository.save(EncryptPassword(user));
     }
 
     public List<UserDTO> GetUser(){
