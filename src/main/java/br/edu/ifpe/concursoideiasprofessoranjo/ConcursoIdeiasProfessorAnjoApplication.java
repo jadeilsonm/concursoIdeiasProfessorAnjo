@@ -23,7 +23,6 @@ public class ConcursoIdeiasProfessorAnjoApplication {
 
 
     public static void main(String[] args) {
-        System.setProperty("spring.profiles.active", "test");
         SpringApplication.run(ConcursoIdeiasProfessorAnjoApplication.class, args);
     }
 }
