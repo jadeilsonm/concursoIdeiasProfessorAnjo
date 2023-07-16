@@ -116,6 +116,11 @@
             <artifactId>flyway-core</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+        <dependency>
             <groupId>in.hocg.boot</groupId>
             <artifactId>flyway-spring-boot-starter</artifactId>
             <version>1.0.55</version>
