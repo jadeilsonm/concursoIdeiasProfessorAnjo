@@ -14,4 +14,5 @@ public class ProjectMemberDTO {
     private String title;
     private String description;
     private List<UserDTO> members;
+    private UserDTO leader;
 }

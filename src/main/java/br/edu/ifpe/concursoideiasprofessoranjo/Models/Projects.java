@@ -23,6 +23,8 @@ public class Projects {
     private String title;
     @Column
     private String description;
+    @Column
+    private Integer leader;
     @OneToMany( mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true )
     public List<Users> members;
 }

@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.slf4j.Logger;
 
 import javax.annotation.security.PermitAll;
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -33,7 +34,7 @@ public class UserController {
 
     @PostMapping
     @PermitAll
-    public ResponseEntity<Users> CreateUser(@RequestBody NewUserDTO u){
+    public ResponseEntity<Users> CreateUser(@Valid @RequestBody NewUserDTO u){
         logger.info("Initializando creted user" + u);
         return new ResponseEntity(userServices.CreateUser(u), HttpStatus.CREATED);
     }

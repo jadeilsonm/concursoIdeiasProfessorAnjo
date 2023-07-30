@@ -31,14 +31,22 @@ public class ProjectService {
         var project = new Projects();
         project.setTitle(p.getTitle());
         project.setDescription(p.getDescription());
-        var users = ChangeIsParticipating(GetUsers(p.getMembers()));
+        var allUserInterger = p.getMembers();
+        allUserInterger.add(p.getLeader());
+        var users = ChangeIsParticipating(GetUsers(allUserInterger));
         project.setMembers(users);
         var projectSave = repository.save(project);
+        var allUser = projectSave.getMembers();
+        var time = allUser.stream().filter(u -> u.getId() != p.getLeader()).toList();
+        var leader = allUser.stream().filter(u -> u.getId() == p.getLeader())
+                .findAny()
+                .orElse(null);
 
         return new ProjectMemberDTO(projectSave.getId(),
                 projectSave.getTitle(),
                 projectSave.getDescription(),
-                ConvertToUserForUserDTO(projectSave.getMembers()));
+                ConvertToUserForUserDTO(time),
+                new UserDTO(leader != null ? leader : new Users()));
     }
 
     private List<Users> GetUsers(List<Integer> ids){
